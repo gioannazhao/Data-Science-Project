@@ -71,7 +71,7 @@ annual_totals_ac <- clean_solar_data %>%
 print(annual_totals_ac)
 
 # Create bar chart using ggplot2
-ggplot(annual_totals_ac, aes(x = factor(Year), y = Total_NPC_MW_AC)) +
+barac <- ggplot(annual_totals_ac, aes(x = factor(Year), y = Total_NPC_MW_AC)) +
   geom_bar(stat = "identity", fill = "steelblue") +
   labs(title = "Total NPC MW AC in Pennsylvania (2004-2025)",
        x = "Year",
@@ -79,8 +79,17 @@ ggplot(annual_totals_ac, aes(x = factor(Year), y = Total_NPC_MW_AC)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
+## Save the figure as a png:
+ggsave(filename = "bargraph of total AC.png",
+       plot = barac,
+       device = "png",
+       width = 6,
+       height = 4,
+       units = "in",
+       dpi = 500)
+
 # Line chart for AC
-ggplot(annual_totals_ac, aes(x = Year, y = Total_NPC_MW_AC)) +
+lineac <- ggplot(annual_totals_ac, aes(x = Year, y = Total_NPC_MW_AC)) +
   geom_line(color = "steelblue", size = 1.2) + 
   geom_point(color = "red", size = 2) +         
   labs(title = "Total NPC MW AC in Pennsylvania (2004-2025)",
@@ -89,6 +98,14 @@ ggplot(annual_totals_ac, aes(x = Year, y = Total_NPC_MW_AC)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))  
 
+## Save the figure as a png:
+ggsave(filename = "linegraph of total AC.png",
+       plot = lineac,
+       device = "png",
+       width = 6,
+       height = 4,
+       units = "in",
+       dpi = 500)
 
 # Group by year and summarize DC
 annual_totals_dc <- clean_solar_data %>%
@@ -96,7 +113,7 @@ annual_totals_dc <- clean_solar_data %>%
   summarize(Total_NPC_MW_DC = sum(total_npc_mw_dc, na.rm = TRUE))
 
 # Create bar chart using ggplot2
-ggplot(annual_totals_dc, aes(x = factor(Year), y = Total_NPC_MW_DC)) +
+bardc <- ggplot(annual_totals_dc, aes(x = factor(Year), y = Total_NPC_MW_DC)) +
   geom_bar(stat = "identity", fill = "steelblue") +
   labs(title = "Total NPC MW DC in Pennsylvania (2004-2025)",
        x = "Year",
@@ -104,8 +121,17 @@ ggplot(annual_totals_dc, aes(x = factor(Year), y = Total_NPC_MW_DC)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
+## Save the figure as a png:
+ggsave(filename = "Bargraph of total DC.png",
+       plot = bardc,
+       device = "png",
+       width = 6,
+       height = 4,
+       units = "in",
+       dpi = 500)
+
 # Line chart for DC
-ggplot(annual_totals_dc, aes(x = Year, y = Total_NPC_MW_DC)) +
+linedc <-ggplot(annual_totals_dc, aes(x = Year, y = Total_NPC_MW_DC)) +
   geom_line(color = "steelblue", size = 1.2) +  
   geom_point(color = "red", size = 2) +       
   labs(title = "Total NPC MW DC in Pennsylvania (2004-2025)",
@@ -114,9 +140,11 @@ ggplot(annual_totals_dc, aes(x = Year, y = Total_NPC_MW_DC)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-
-
-
-
-
-
+## Save the figure as a png:
+ggsave(filename = "linegraph of total DC.png",
+       plot = linedc,
+       device = "png",
+       width = 6,
+       height = 4,
+       units = "in",
+       dpi = 500)
